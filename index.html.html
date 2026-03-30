@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew "Cody" Selvester — Enterprise Program & PMO Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ─── DESIGN TOKENS ──────────────────────────────────────── */
+:root {
+  --paper:    #1c1f26;
+  --paper2:   #22262f;
+  --paper3:   #282d38;
+  --white:    #2a2f3b;
+  --navy:     #eeeae0;
+  --navy2:    #d4cfc3;
+  --gold:     #d4922a;
+  --gold2:    #e8a83c;
+  --gold-bg:  rgba(212,146,42,0.1);
+  --muted:    #9a9890;
+  --dim:      #5a5a68;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(212,146,42,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--paper);
+  color: var(--navy);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle paper grain */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9000; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+.mono {
+  font-family: 'DM Mono', monospace;
+}
+
+.serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ─── NAV ────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background: rgba(28,31,38,0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 28px rgba(0,0,0,0.4); }
+
+.nav-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--navy); letter-spacing: 0.02em;
+}
+.nav-name em {
+  font-style: italic; font-weight: 400; color: var(--gold);
+}
+
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+.nav-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem; letter-spacing: 0.16em; text-transform: uppercase;
+  background: var(--navy); color: var(--paper);
+  padding: 0.6rem 1.6rem; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.nav-btn:hover { background: var(--gold); transform: translateY(-1px); }
+
+/* ─── HERO ───────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 10rem 4rem 6rem;
+  position: relative; overflow: hidden;
+}
+
+/* Large watermark number */
+.hero-watermark {
+  position: absolute;
+  right: -1rem; bottom: -4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36vw; font-weight: 700; line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(212,146,42,0.08);
+  pointer-events: none; user-select: none;
+  letter-spacing: -0.04em;
+}
+
+.hero-inner {
+  max-width: 1160px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 380px; gap: 6rem; align-items: center;
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 0.9rem;
+  opacity: 1; animation: fadeUp 0.7s 0.1s ease forwards;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 2.5rem; height: 1px; background: var(--gold);
+}
+
+/* Main headline */
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-weight: 600; line-height: 1.06;
+  color: var(--navy); margin-bottom: 1.75rem;
+  opacity: 1; animation: fadeUp 0.8s 0.2s ease forwards;
+}
+.hero-h1 .accent {
+  display: block; font-style: italic;
+  font-weight: 400; color: var(--gold);
+}
+
+/* Subhead */
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.8;
+  color: var(--muted); max-width: 540px;
+  margin-bottom: 1.25rem;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+  opacity: 1; animation: fadeUp 0.8s 0.32s ease forwards;
+}
+
+/* Supporting line */
+.hero-support {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--dim); margin-bottom: 3rem;
+  padding-left: 1.25rem;
+  opacity: 1; animation: fadeUp 0.7s 0.42s ease forwards;
+}
+
+/* CTAs */
+.hero-ctas {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 1; animation: fadeUp 0.7s 0.52s ease forwards;
+}
+
+.btn-primary {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--navy); color: var(--paper);
+  padding: 0.9rem 2.25rem; text-decoration: none;
+  transition: background 0.2s, transform 0.15s; display: inline-block;
+}
+.btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+
+.btn-secondary {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  border: 1px solid rgba(25,37,64,0.25); color: var(--muted);
+  padding: 0.9rem 2.25rem; text-decoration: none;
+  transition: all 0.2s; display: inline-block; background: transparent;
+}
+.btn-secondary:hover {
+  border-color: var(--gold); color: var(--gold); transform: translateY(-2px);
+}
+
+/* Stat cards */
+.hero-stats {
+  display: flex; flex-direction: column; gap: 1px;
+  opacity: 1; animation: fadeUp 0.8s 0.35s ease forwards;
+}
+
+.stat-card {
+  background: var(--paper2);
+  padding: 1.4rem 1.75rem;
+  border-left: 3px solid var(--gold);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateX(4px); }
+.stat-card:nth-child(2) { border-left-color: var(--navy); }
+.stat-card:nth-child(3) { border-left-color: var(--gold2); }
+.stat-card:nth-child(4) { border-left-color: var(--navy2); }
+
+.stat-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem; font-weight: 700; line-height: 1;
+  color: var(--navy);
+}
+.stat-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-top: 0.15rem;
+}
+.stat-sub {
+  font-size: 0.75rem; color: var(--dim); margin-top: 0.2rem; line-height: 1.4;
+}
+
+/* ─── SECTION BASE ───────────────────────────────────────── */
+.section-wrap {
+  max-width: 1160px; margin: 0 auto; padding: 7rem 4rem;
+}
+
+.section-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.65rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-eyebrow::before { content: '—'; }
+
+.section-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600; line-height: 1.1; color: var(--navy);
+  margin-bottom: 3.5rem;
+}
+.section-h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+/* ─── DIVIDERS ───────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--border), rgba(25,37,64,0.05));
+}
+.divider-full {
+  height: 1px; background: var(--border);
+}
+
+/* ─── WHAT I DO ──────────────────────────────────────────── */
+#what { background: var(--paper); }
+
+.what-list { display: flex; flex-direction: column; }
+
+.what-row {
+  display: grid; grid-template-columns: 4.5rem 1fr;
+  gap: 0 2.5rem; align-items: baseline;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s; cursor: default;
+  position: relative;
+}
+.what-row:first-child { border-top: 1px solid var(--border); }
+.what-row::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+  background: var(--gold-bg);
+  transition: width 0.3s ease;
+}
+.what-row:hover::before { width: 100%; }
+
+.what-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem; color: var(--gold);
+  padding-top: 0.2rem; position: relative; z-index: 1;
+}
+.what-content { position: relative; z-index: 1; }
+.what-content h3 {
+  font-size: 1.02rem; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.35rem; letter-spacing: -0.01em;
+}
+.what-content p {
+  font-size: 0.88rem; line-height: 1.75; color: var(--muted);
+}
+
+/* ─── PROBLEMS ───────────────────────────────────────────── */
+#problems { background: var(--paper3); }
+#problems .section-eyebrow { color: var(--gold2); }
+#problems .section-eyebrow::before { color: var(--gold2); }
+#problems .section-h2 { color: var(--navy); }
+#problems .section-h2 em { color: var(--gold2); }
+
+.problems-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-style: italic; line-height: 1.7;
+  color: rgba(255,255,255,0.5); max-width: 640px; margin-bottom: 3.5rem;
+}
+
+.problems-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.problem-card {
+  background: var(--paper2);
+  padding: 2rem 2.25rem;
+  border-left: 2px solid transparent;
+  transition: border-color 0.25s, background 0.2s;
+  cursor: default;
+}
+.problem-card:hover {
+  border-left-color: var(--gold);
+  background: var(--paper3);
+}
+
+.prob-when {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: 0.65rem;
+}
+.problem-card h3 {
+  font-size: 0.98rem; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.5rem; line-height: 1.4;
+}
+.problem-card p {
+  font-size: 0.83rem; line-height: 1.7; color: var(--muted);
+}
+
+/* ─── HOW I WORK ─────────────────────────────────────────── */
+#how { background: var(--paper2); }
+
+.how-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.how-card:last-child {
+  grid-column: 2;
+}
+
+.how-card {
+  background: var(--paper2);
+  padding: 2rem 1.75rem;
+  border-top: 2px solid var(--border2);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.how-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border-top-color: var(--gold);
+}
+
+.how-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.75rem;
+}
+.how-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+.how-card p {
+  font-size: 0.86rem; line-height: 1.78; color: var(--muted);
+}
+
+/* ─── IMPACT ─────────────────────────────────────────────── */
+#impact { background: var(--paper); }
+
+.impact-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--border); margin-bottom: 4rem;
+}
+.impact-num-card {
+  background: var(--paper2); padding: 2rem 1.75rem;
+  transition: background 0.2s;
+}
+.impact-num-card:hover { background: var(--paper3); }
+.impact-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; font-weight: 700; line-height: 1; color: var(--navy);
+}
+.impact-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-top: 0.35rem; margin-bottom: 0.3rem;
+}
+.impact-desc { font-size: 0.78rem; color: var(--dim); line-height: 1.4; }
+
+/* Experience list */
+.exp-list { display: flex; flex-direction: column; }
+
+.exp-row {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 0 4rem; padding: 2.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-row:last-child { border-bottom: none; }
+
+.exp-left {}
+.exp-co {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem;
+}
+.exp-dates {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 0.2rem;
+}
+.exp-loc { font-size: 0.75rem; color: var(--dim); }
+
+.exp-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1.1rem;
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.exp-bullets li {
+  font-size: 0.88rem; line-height: 1.72; color: var(--muted);
+  padding-left: 1rem; position: relative;
+}
+.exp-bullets li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--gold); font-size: 0.68rem; top: 0.32rem;
+}
+.exp-bullets strong { color: var(--navy); font-weight: 600; }
+
+/* ─── ABOUT ──────────────────────────────────────────────── */
+#about { background: var(--paper2); }
+
+.about-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+}
+
+.about-text p {
+  font-size: 1rem; line-height: 1.88; color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text strong { color: var(--navy); font-weight: 600; }
+
+.about-sidebar {}
+
+.cred-block {
+  margin-bottom: 2.5rem;
+}
+.cred-block h4 {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.cred-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 0.1rem;
+}
+.cred-item:first-of-type { border-top: 1px solid var(--border); }
+.cred-name {
+  font-size: 0.88rem; font-weight: 600; color: var(--navy);
+}
+.cred-sub {
+  font-size: 0.75rem; color: var(--dim);
+}
+
+.cert-wrap {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.cert {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--paper3); color: var(--navy2);
+  padding: 0.38rem 0.85rem;
+  border: 1px solid var(--border);
+}
+
+/* ─── CONTACT ────────────────────────────────────────────── */
+#contact {
+  background: var(--paper3);
+  padding: 8rem 4rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.contact-wm {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40vw; font-weight: 700; line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212,146,42,0.06);
+  pointer-events: none; user-select: none; white-space: nowrap;
+  letter-spacing: -0.05em;
+}
+.contact-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.25rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+}
+.contact-eyebrow::before, .contact-eyebrow::after {
+  content: ''; display: block; width: 2rem; height: 1px; background: var(--gold);
+}
+.contact-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 600; line-height: 1.1;
+  color: var(--navy); margin-bottom: 1.25rem;
+}
+.contact-h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.contact-sub {
+  font-size: 1rem; color: var(--muted);
+  max-width: 520px; margin: 0 auto 3.5rem; line-height: 1.75;
+}
+.contact-row {
+  display: flex; justify-content: center;
+  gap: 3.5rem; flex-wrap: wrap; position: relative; z-index: 1;
+}
+.contact-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+  text-decoration: none; transition: transform 0.2s;
+}
+.contact-item:hover { transform: translateY(-3px); }
+.c-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dim);
+}
+.c-val {
+  font-size: 0.9rem; font-weight: 600; color: var(--navy2);
+  border-bottom: 1px solid rgba(212,146,42,0.4); padding-bottom: 0.1rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.contact-item:hover .c-val { color: var(--gold); border-color: var(--gold); }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer {
+  background: #13151a;
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem; color: var(--dim);
+}
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--dim);
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.72s ease, transform 0.72s ease;
+}
+.reveal.on { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  nav { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  #hero { padding: 8rem 2rem 5rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-watermark { display: none; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .stat-card { flex: 1 1 45%; }
+  .section-wrap { padding: 5rem 2rem; }
+  .about-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .how-grid { grid-template-columns: 1fr 1fr; }
+  .problems-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr 1fr; }
+  .exp-row { grid-template-columns: 1fr; gap: 1rem; }
+  .expect-list { grid-template-columns: 1fr; }
+  #contact { padding: 5rem 2rem; }
+  footer { padding: 1.25rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr 1fr; }
+  .stat-card { flex: 1 1 100%; }
+  .hero-ctas { flex-direction: column; }
+  .contact-row { gap: 2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-name">Matthew <em>"Cody"</em> Selvester</div>
+  <ul class="nav-links">
+    <li><a href="#what">What I Do</a></li>
+    <li><a href="#problems">Problems</a></li>
+    <li><a href="#how">How I Work</a></li>
+    <li><a href="#impact">Results</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Let's Talk</a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-watermark">20</div>
+  <div class="hero-inner">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">San Francisco Bay Area &nbsp;·&nbsp; Open to Director &amp; VP Roles</div>
+
+      <h1 class="hero-h1">
+        Strategy is easy.
+        <span class="accent">Execution is hard.</span>
+      </h1>
+
+      <p class="hero-sub">
+        I specialize in the hard part. Prioritization, alignment, and delivery in high-stakes environments.
+      </p>
+
+      <p class="hero-support">
+        20 years leading enterprise programs and PMOs across FinTech, banking, and regulated industries.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#problems" class="btn-primary">Where I Add Value</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-n">$40M+</div>
+        <div class="stat-lbl">Fraud Losses Prevented</div>
+        <div class="stat-sub">AI detection platform · 2025 Banking Tech Award</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">$10M+</div>
+        <div class="stat-lbl">Recurring Revenue Generated</div>
+        <div class="stat-sub">Enterprise Simplification Program</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">40%</div>
+        <div class="stat-lbl">Delivery Efficiency Gained</div>
+        <div class="stat-sub">Workflow redesign across the enterprise</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">20 yrs</div>
+        <div class="stat-lbl">Enterprise Delivery</div>
+        <div class="stat-sub">FinTech · Banking · SaaS · Fortune 500</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider-full"></div>
+
+<!-- ── WHAT I DO ─────────────────────────────────────────── -->
+<section id="what">
+<div class="section-wrap">
+  <div class="section-eyebrow reveal">What I Do</div>
+  <h2 class="section-h2 reveal d1">Most execution problems aren't about effort.<br><em>They're about clarity.</em></h2>
+
+  <p class="problems-intro reveal d2" style="color: var(--muted); font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; line-height: 1.75; max-width: 680px; margin-bottom: 3.5rem;">
+    Teams are usually working hard. What's missing is a clear priority order, defined ownership, and a way for leadership to see what's actually happening. That's the gap I close.
+  </p>
+
+  <div class="what-list">
+
+    <div class="what-row reveal">
+      <div class="what-num">01</div>
+      <div class="what-content">
+        <h3>I make the hard prioritization calls happen.</h3>
+        <p>Most leaders know the portfolio is overloaded. What they need is someone who will put everything on the table and force a real decision. Not a polite compromise that leaves 30 things in flight. I do that. The result is a plan teams can actually execute — not one that falls apart in week three.</p>
+      </div>
+    </div>
+
+    <div class="what-row reveal">
+      <div class="what-num">02</div>
+      <div class="what-content">
+        <h3>I build the model that makes cross-functional delivery work.</h3>
+        <p>When engineering, product, and the business each define done differently, nothing ships cleanly. I establish shared ownership, a clear cadence, and a decision-making process everyone can work within. I've done this in 90-day turnarounds and in multi-year programs. The approach is the same either way.</p>
+      </div>
+    </div>
+
+    <div class="what-row reveal">
+      <div class="what-num">03</div>
+      <div class="what-content">
+        <h3>I give leadership an honest picture of what's at risk.</h3>
+        <p>Most status reporting defaults to optimism. Green until it's red. I build reporting that reflects reality. Concise enough for an executive to read in five minutes. Specific enough to make a decision from. When something is heading toward failure, I say so — early, clearly, and with a path forward.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<div class="divider-full"></div>
+
+<!-- ── PROBLEMS I SOLVE ──────────────────────────────────── -->
+<section id="problems">
+<div class="section-wrap">
+  <div class="section-eyebrow reveal">Where I Add Value</div>
+  <h2 class="section-h2 reveal d1">If any of this sounds familiar,<br><em>let's talk.</em></h2>
+
+  <p class="problems-intro reveal d2">These are the situations I walk into most often. Most organizations are dealing with at least two of them at once.</p>
+
+  <div class="problems-grid">
+
+    <div class="problem-card reveal">
+      <div class="prob-when">01</div>
+      <h3>When everything is a priority, nothing gets done well.</h3>
+      <p>I force the trade-off conversations and build a sequencing plan teams can actually execute.</p>
+    </div>
+
+    <div class="problem-card reveal d1">
+      <div class="prob-when">02</div>
+      <h3>When leadership can't see what's at risk until it's too late.</h3>
+      <p>I build the visibility layer that surfaces problems early enough to act on them.</p>
+    </div>
+
+    <div class="problem-card reveal">
+      <div class="prob-when">03</div>
+      <h3>If your teams are working hard but not moving in the same direction.</h3>
+      <p>I create the structure and shared operating model that gets everyone aligned.</p>
+    </div>
+
+    <div class="problem-card reveal d1">
+      <div class="prob-when">04</div>
+      <h3>When delivery is inconsistent and nobody can explain why.</h3>
+      <p>I diagnose what's actually breaking down and fix the system, not just the symptom.</p>
+    </div>
+
+    <div class="problem-card reveal">
+      <div class="prob-when">05</div>
+      <h3>If accountability is unclear and decisions keep stalling.</h3>
+      <p>I define ownership upfront and make sure the right people are responsible for the right outcomes.</p>
+    </div>
+
+    <div class="problem-card reveal d1">
+      <div class="prob-when">06</div>
+      <h3>When you need more structure but don't want more bureaucracy.</h3>
+      <p>I build governance that accelerates teams, not overhead that slows them down.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<div class="divider-full"></div>
+
+<!-- ── HOW I WORK ────────────────────────────────────────── -->
+<section id="how">
+<div class="section-wrap">
+  <div class="section-eyebrow reveal">How I Work</div>
+  <h2 class="section-h2 reveal d1">Practical. Direct.<br><em>No theory, no fluff.</em></h2>
+
+  <div class="how-grid">
+
+    <div class="how-card reveal">
+      <div class="how-label">Prioritization</div>
+      <h3>Start with priorities.</h3>
+      <p>Before anything else, I get the full list out on the table and work with leadership to sequence it against real capacity. If everything is a priority, we have a conversation until it isn't.</p>
+    </div>
+
+    <div class="how-card reveal d1">
+      <div class="how-label">Accountability</div>
+      <h3>Make ownership explicit.</h3>
+      <p>Every piece of work has a name attached to it. Not a team, not a function — a person. Ambiguous ownership is where programs go to die.</p>
+    </div>
+
+    <div class="how-card reveal d2">
+      <div class="how-label">Alignment</div>
+      <h3>Build a rhythm.</h3>
+      <p>I establish a simple operating cadence — the right meetings, the right frequency, the right people in the room. Consistent touchpoints prevent small problems from becoming big ones.</p>
+    </div>
+
+    <div class="how-card reveal">
+      <div class="how-label">Reporting</div>
+      <h3>Keep reporting honest.</h3>
+      <p>Status should reflect reality, not optimism. I build lightweight reporting that tells leadership what's actually happening — including the things nobody wants to say out loud.</p>
+    </div>
+
+    <div class="how-card reveal d1">
+      <div class="how-label">Risk</div>
+      <h3>Surface risks early.</h3>
+      <p>I'd rather have an uncomfortable conversation in week two than a crisis in week eight. Risks get named, owned, and tracked — not buried in a deck nobody reads.</p>
+    </div>
+
+    <div class="how-card reveal d2">
+      <div class="how-label">Delivery</div>
+      <h3>Remove blockers fast.</h3>
+      <p>When something is slowing a team down, I treat it as urgent. Blockers that sit unresolved kill momentum. I stay close enough to the work to catch them early.</p>
+    </div>
+
+    <div class="how-card reveal">
+      <div class="how-label">Structure</div>
+      <h3>Cut what isn't working.</h3>
+      <p>If a process, meeting, or report isn't helping the team deliver, I remove it. Structure should accelerate work, not add to it.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<div class="divider-full"></div>
+
+<!-- ── IMPACT ────────────────────────────────────────────── -->
+<section id="impact">
+<div class="section-wrap">
+  <div class="section-eyebrow reveal">Results</div>
+  <h2 class="section-h2 reveal d1">Numbers that <em>tell the story.</em></h2>
+
+  <div class="impact-grid reveal d2">
+    <div class="impact-num-card">
+      <div class="impact-big">$40M+</div>
+      <div class="impact-label">Fraud Prevented</div>
+      <div class="impact-desc">AI detection platform · 2025 Banking Tech Award winner</div>
+    </div>
+    <div class="impact-num-card">
+      <div class="impact-big">$10M+</div>
+      <div class="impact-label">Revenue Generated</div>
+      <div class="impact-desc">Enterprise Simplification Program, First Tech FCU</div>
+    </div>
+    <div class="impact-num-card">
+      <div class="impact-big">40%</div>
+      <div class="impact-label">Efficiency Gained</div>
+      <div class="impact-desc">Workflow redesign and tooling modernization</div>
+    </div>
+    <div class="impact-num-card">
+      <div class="impact-big">90+</div>
+      <div class="impact-label">Team Members Led</div>
+      <div class="impact-desc">Engineers, architects &amp; analysts across global portfolios</div>
+    </div>
+  </div>
+
+  <div class="exp-list">
+
+    <div class="exp-row reveal">
+      <div class="exp-left">
+        <div class="exp-co">Relanto AI</div>
+        <div class="exp-dates">Nov 2025 – Present</div>
+        <div class="exp-loc">Fremont, CA</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Lead Technical Program Manager</div>
+        <ul class="exp-bullets">
+          <li>Lead <strong>11 concurrent AI, analytics &amp; enterprise platform programs</strong> for a Fortune 500 technology client</li>
+          <li>Coordinate delivery across <strong>90+ engineers, architects &amp; analysts</strong> on and offshore</li>
+          <li>Built executive governance from scratch — portfolio reporting, risk tracking, dependency management, and stakeholder alignment</li>
+          <li>Drive AI-enabled automation platforms supporting finance operations and enterprise data governance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-left">
+        <div class="exp-co">First Tech FCU</div>
+        <div class="exp-dates">Mar 2022 – Sep 2024</div>
+        <div class="exp-loc">San Jose, CA</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Senior Principal PM / Interim Director, EPMO</div>
+        <ul class="exp-bullets">
+          <li>Prevented <strong>$40M+ in fraud losses</strong> by deploying an AI detection platform — won the 2025 Banking Tech Award for Best Use of Technology in Combatting Fraud</li>
+          <li>Generated <strong>$10M+ in annual recurring revenue</strong> by building the enterprise Simplification Program from the ground up</li>
+          <li>Improved delivery efficiency <strong>40%</strong> by redesigning workflows and cutting redundant process</li>
+          <li>Built the Enterprise PMO from scratch — governance, reporting dashboards, and PM mentorship</li>
+          <li>Shipped a six-week Online &amp; Mobile Banking release by aligning cybersecurity, fraud, legal, marketing, and UAT across one deadline</li>
+          <li>Launched a PM Community of Practice that raised delivery discipline and execution maturity across the organization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-left">
+        <div class="exp-co">Bank of the West</div>
+        <div class="exp-dates">May 2015 – Mar 2022</div>
+        <div class="exp-loc">San Ramon, CA</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Senior Program Manager – Strategic Programs</div>
+        <ul class="exp-bullets">
+          <li>Delivered <strong>FDIC-mandated KYC, KYB &amp; AML</strong> compliance programs on time — protecting audit outcomes and reducing regulatory exposure</li>
+          <li>Raised program success rates <strong>45%</strong> by redesigning governance and clarifying ownership across <strong>15+ enterprise programs</strong></li>
+          <li>Used NPS and CX data to build enterprise initiatives that were adopted across multiple business lines</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-left">
+        <div class="exp-co">AssetMark</div>
+        <div class="exp-dates">Sep 2013 – May 2015</div>
+        <div class="exp-loc">Concord, CA</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Program Manager – Strategic Growth &amp; Acceleration</div>
+        <ul class="exp-bullets">
+          <li>Grew advisor sign-ups <strong>33%</strong> and raised average advisor production from <strong>$900K to $1.3M</strong></li>
+          <li>Expanded national distribution by <strong>450+ advisors</strong>, generating <strong>$800M+</strong> in new production</li>
+          <li>Reduced advisor time-to-productivity <strong>58%</strong> by redesigning onboarding frameworks</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-left">
+        <div class="exp-co">Early Career</div>
+        <div class="exp-dates">2005 – 2013</div>
+        <div class="exp-loc">Bay Area, CA</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Project Manager · Kaiser Permanente · Wells Fargo · Amplify Technologies</div>
+        <ul class="exp-bullets">
+          <li>Delivered compliance, IT, and transformation programs across healthcare, banking, and FinTech</li>
+          <li>Built core skills in vendor governance, regulatory delivery, and stakeholder alignment that remain central to my work today</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<div class="divider-full"></div>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section id="about">
+<div class="section-wrap">
+  <div class="section-eyebrow reveal">About</div>
+  <h2 class="section-h2 reveal d1">20 years. Mostly <em>fixing things.</em></h2>
+
+  <div class="about-layout">
+
+    <div class="about-text reveal d1">
+      <p>
+        I've spent 20 years leading programs and building PMOs where execution actually matters. FinTech, regulated banking, enterprise SaaS. Places where a missed deadline or a broken process has real consequences.
+      </p>
+      <p>
+        I get called in when things are off track. Maybe a program is behind and nobody wants to say it out loud. Maybe the portfolio has 30 priorities and no real plan. <strong>I come in, figure out what's actually happening, and build the structure to move forward.</strong>
+      </p>
+      <p>
+        At First Tech Federal Credit Union, I inherited a fraud detection program with technical debt, unresolved vendor dependencies, and a hard regulatory deadline. One shot. I restructured the delivery model, put the right people on point, and we shipped. The platform prevented over $40 million in fraud losses and won a 2025 Banking Tech Award.
+      </p>
+      <p>
+        I'm not a process-for-process's-sake person. The frameworks I build are meant to get out of the way and let good teams move fast. If something isn't helping the team deliver, I cut it.
+      </p>
+      <p>
+        At this stage of my career, I want to do this work in a space I actually care about. I'm drawn to collectibles, games, and the hobby space — where the community is passionate, the products matter, and execution quality is visible.
+      </p>
+    </div>
+
+    <div class="about-sidebar reveal d2">
+
+      <div class="cred-block">
+        <h4>Education</h4>
+        <div class="cred-item">
+          <div class="cred-name">MBA · University of Massachusetts Dartmouth</div>
+          <div class="cred-sub">Organizational Leadership · GPA 4.0 · Beta Gamma Sigma</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-name">BS, Business Management · Cal State Chico</div>
+          <div class="cred-sub">Cum Laude · 1st Place, GLO-BUS Business Simulation</div>
+        </div>
+      </div>
+
+      <div class="cred-block">
+        <h4>Certifications</h4>
+        <div class="cert-wrap">
+          <span class="cert">PMP</span>
+          <span class="cert">PMI-ACP</span>
+          <span class="cert">CSM</span>
+          <span class="cert">ITIL</span>
+          <span class="cert">Lean Six Sigma Black Belt</span>
+          <span class="cert">MIT Strategic Tech Roadmapping</span>
+          <span class="cert">AI Foundations — IBM · NVIDIA · Google</span>
+        </div>
+      </div>
+
+      <div class="cred-block">
+        <h4>Awards</h4>
+        <div class="cred-item">
+          <div class="cred-name">2025 Banking Tech Award</div>
+          <div class="cred-sub">Best Use of Technology in Combatting Fraud · First Tech FCU</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-name">2023 Being Dynamic Award</div>
+          <div class="cred-sub">First Tech Federal Credit Union</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-name">2020 Leadership Award</div>
+          <div class="cred-sub">Bank of the West</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider-full"></div>
+
+<!-- ── CONTACT ───────────────────────────────────────────── -->
+<section id="contact">
+  <div class="contact-wm">CS</div>
+  <div class="contact-eyebrow reveal">Let's Connect</div>
+  <h2 class="contact-h2 reveal d1">
+    If execution is a problem<br>in your organization,
+    <em>I can fix it.</em>
+  </h2>
+  <p class="contact-sub reveal d2">
+    I'm open to Director and VP-level roles. Reach out directly — no recruiters, no forms, no pitch.
+  </p>
+  <div class="contact-row reveal d3">
+    <a href="tel:5305015654" class="contact-item">
+      <span class="c-type">Phone</span>
+      <span class="c-val">530-501-5654</span>
+    </a>
+    <a href="/cdn-cgi/l/email-protection#79141a0a1c150f1c0a0d1c0b391e14181015571a1614" class="contact-item">
+      <span class="c-type">Email</span>
+      <span class="c-val"><span class="__cf_email__" data-cfemail="09646a7a6c657f6c7a7d6c7b496e64686065276a6664">[email&#160;protected]</span></span>
+    </a>
+    <a href="https://linkedin.com/in/mcselvester" target="_blank" class="contact-item">
+      <span class="c-type">LinkedIn</span>
+      <span class="c-val">mcselvester</span>
+    </a>
+    <a href="#" class="contact-item">
+      <span class="c-type">Location</span>
+      <span class="c-val">Bay Area, CA</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Matthew "Cody" Selvester</div>
+  <div class="footer-copy">© 2026 · Concord, CA · Director &amp; VP Roles</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => 
